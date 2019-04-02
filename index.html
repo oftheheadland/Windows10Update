@@ -205,12 +205,16 @@
         } else if (e.key == "F5") {
         } else if (e.key == "ArrowUp") {
           console.log("up");
-          percentage++;
-          updatePercent();
+          if (percentage < 100) {
+            percentage++;
+            updatePercent();
+          }
         } else if (e.key == "ArrowDown") {
           console.log("down");
-          percentage--;
-          updatePercent();
+          if (percentage > 0) {
+            percentage--;
+            updatePercent();
+          }
         } else if (e.key == "F12") {
         } else {
           e.preventDefault();
