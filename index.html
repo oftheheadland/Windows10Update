@@ -1,158 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>title</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="frown.png" />
+    <meta name="theme-color" content="#000000" />
+    <meta property="og:title" content="Fake Win10 Update" />
+    <meta property="og:url" content="https://windows10update.netlify.com/" />
+    <meta
+      property="og:image"
+      content="https://windows10update.netlify.com/frown.png"
+    />
+    <meta
+      property="og:description"
+      content="Prank your friends with a fake Windows 10 update screen."
+    />
 
-    <style>
-      body {
-        background: #0078d7;
-        min-height: 100vh;
-        overflow: hidden;
-        margin: 0;
-      }
-
-      .loader {
-        width: 50px;
-        height: 50px;
-        margin: auto;
-      }
-      .loader .circle {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        opacity: 0;
-        transform: rotate(225deg);
-        animation-iteration-count: infinite;
-        animation-name: orbit;
-        animation-duration: 5.5s;
-      }
-      .loader .circle:after {
-        content: "";
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        border-radius: 5px;
-        background: #fff;
-      }
-      .loader .circle:nth-child(2) {
-        animation-delay: 240ms;
-      }
-      .loader .circle:nth-child(3) {
-        animation-delay: 480ms;
-      }
-      .loader .circle:nth-child(4) {
-        animation-delay: 720ms;
-      }
-      .loader .circle:nth-child(5) {
-        animation-delay: 960ms;
-      }
-      .loader .bg {
-        position: absolute;
-        width: 70px;
-        height: 70px;
-        margin-left: -16px;
-        margin-top: -16px;
-        border-radius: 13px;
-        background-color: #0078d7;
-      }
-      @keyframes orbit {
-        0% {
-          transform: rotate(225deg);
-          opacity: 1;
-          animation-timing-function: ease-out;
-        }
-        7% {
-          transform: rotate(345deg);
-          animation-timing-function: linear;
-        }
-        30% {
-          transform: rotate(455deg);
-          animation-timing-function: ease-in-out;
-        }
-        39% {
-          transform: rotate(690deg);
-          animation-timing-function: linear;
-        }
-        70% {
-          transform: rotate(815deg);
-          opacity: 1;
-          animation-timing-function: ease-out;
-        }
-        75% {
-          transform: rotate(945deg);
-          animation-timing-function: ease-out;
-        }
-        76% {
-          transform: rotate(945deg);
-          opacity: 0;
-        }
-        100% {
-          transform: rotate(945deg);
-          opacity: 0;
-        }
-      }
-
-      .windows-text {
-        text-align: center;
-        color: rgb(255, 255, 255);
-        font-family: "Segoe UI Light", "Segoe UI", "Open Sans", sans-serif;
-        font-size: 20px;
-      }
-
-      .loading-text {
-        line-height: 10px;
-      }
-
-      ::-moz-selection {
-        background: rgba(0, 0, 0, 0);
-      }
-      ::selection {
-        background: rgba(0, 0, 0, 0);
-      }
-
-      @media only screen and (max-width: 700px) {
-        #tip {
-          display: none;
-        }
-      }
-      .credit:visited {
-        color: white;
-      }
-      .credit {
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .close {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        width: 32px;
-        height: 32px;
-        opacity: 0.8;
-      }
-      .close:hover {
-        opacity: 1;
-        cursor: pointer;
-      }
-      .close:before,
-      .close:after {
-        position: absolute;
-        left: 15px;
-        content: " ";
-        height: 33px;
-        width: 2px;
-        background-color: rgb(255, 255, 255);
-      }
-      .close:before {
-        transform: rotate(45deg);
-      }
-      .close:after {
-        transform: rotate(-45deg);
-      }
-    </style>
+    <title>Win10 Update</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <link
       href="https://fonts.googleapis.com/css?family=Open+Sans"
       rel="stylesheet"
@@ -160,22 +25,15 @@
   </head>
   <body>
     <div id="tip" class="windows-text" style="text-align: center;">
-      <div
-        style="max-width: 600px; margin: auto; margin-top: 10px; padding: 10px; background-color: rgb(96, 101, 111); font-size: 18px; position: relative; z-index: 100;  
-    box-shadow: 0 10px 16px 0 rgba(0,0,0,.2),0 6px 20px 0 rgba(0,0,0,.39)!important;"
-      >
-        <h2 style="margin: 1rem; font-size: 26px;">
+      <div class="tip-box">
+        <h2 class="title-h2">
           Fake Windows 10 Update Screen
         </h2>
         <p>Press F11 on your keyboard to enter stealth mode.</p>
         <p>
-          Don't feel like working this morning? Tell your boss the darn computer
-          is still updating.
+          Don't feel like working this morning? Tell your boss your computer
+          won't stop updating.
         </p>
-        <!-- <p>
-        Should keep them convinced long enough to finish your cup of coffee at
-        least. ☕
-      </p> -->
         <p>Use the Up and Down arrow keys to change the percentage.</p>
         <p>Press F11 again to go back to normal. Enjoy your day!</p>
         <p>
@@ -188,19 +46,12 @@
             >oftheheadland</a
           >
         </p>
-        <!-- <p>
-        Multiple monitors? Go
-        <a style="color: white;" href="/black">here</a> and fullscreen the page
-        on your other monitors.
-      </p> -->
 
         <div id="close" class="close"></div>
       </div>
     </div>
 
-    <div
-      style="position: absolute; top: 50%; left: 50%; transform: translateX(-50%) translateY(-50%); width: 100%;"
-    >
+    <div class="loader-div">
       <div class="loader">
         <div class="bg"></div>
         <div class="circle"></div>
@@ -217,54 +68,6 @@
       </div>
     </div>
 
-    <script>
-      document.getElementById("close").addEventListener("click", e => {
-        activateStealth();
-      });
-
-      function activateStealth() {
-        document.addEventListener("contextmenu", event =>
-          event.preventDefault()
-        );
-        document.getElementById("tip").style.display = "none";
-        sleep(100).then(() => {
-          document.body.style.cursor = "none";
-        });
-      }
-
-      let percentage = 99;
-      updatePercent();
-      function updatePercent() {
-        document.getElementById("percentage").innerHTML = percentage;
-      }
-
-      window.addEventListener("resize", e => {
-        document.body.style.cursor = "auto";
-      });
-
-      const sleep = milliseconds => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds));
-      };
-
-      document.addEventListener("keydown", e => {
-        if (e.key == "F11") {
-          activateStealth();
-        } else if (e.key == "F5") {
-        } else if (e.key == "ArrowUp") {
-          if (percentage < 100) {
-            percentage++;
-            updatePercent();
-          }
-        } else if (e.key == "ArrowDown") {
-          if (percentage > 0) {
-            percentage--;
-            updatePercent();
-          }
-        } else if (e.key == "F12") {
-        } else {
-          e.preventDefault();
-        }
-      });
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
