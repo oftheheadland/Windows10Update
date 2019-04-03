@@ -98,7 +98,6 @@
         text-align: center;
         color: rgb(255, 255, 255);
         font-family: "Segoe UI Light", "Segoe UI", "Open Sans", sans-serif;
-        padding-top: 20px;
         font-size: 20px;
       }
 
@@ -113,10 +112,45 @@
         background: rgba(0, 0, 0, 0);
       }
 
-      @media only screen and (max-width: 800px) {
+      @media only screen and (max-width: 700px) {
         #tip {
           display: none;
         }
+      }
+      .credit:visited {
+        color: white;
+      }
+      .credit {
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 32px;
+        height: 32px;
+        opacity: 0.8;
+      }
+      .close:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+      .close:before,
+      .close:after {
+        position: absolute;
+        left: 15px;
+        content: " ";
+        height: 33px;
+        width: 2px;
+        background-color: rgb(255, 255, 255);
+      }
+      .close:before {
+        transform: rotate(45deg);
+      }
+      .close:after {
+        transform: rotate(-45deg);
       }
     </style>
     <link
@@ -125,25 +159,40 @@
     />
   </head>
   <body>
-    <div id="tip" class="windows-text" style="width: 100%; text-align: center;">
-      <h2>Fake Windows 10 Update Screen</h2>
-      <p>Press F11 on your keyboard to enter stealth mode.</p>
-      <p>
-        Don't feel like doing work this morning? Tell your boss the darn
-        computer is still updating.
-      </p>
-      <!-- <p>
+    <div id="tip" class="windows-text" style="text-align: center;">
+      <div
+        style="max-width: 600px; margin: auto; margin-top: 10px; padding: 10px; background-color: rgb(96, 101, 111); font-size: 18px; position: relative; z-index: 100;"
+      >
+        <h2 style="margin: 1rem;">Fake Windows 10 Update Screen</h2>
+        <p>Press F11 on your keyboard to enter stealth mode.</p>
+        <p>
+          Don't feel like working this morning? Tell your boss the darn computer
+          is still updating.
+        </p>
+        <!-- <p>
         Should keep them convinced long enough to finish your cup of coffee at
         least. ☕
       </p> -->
-      <p>Use the up and down arrow keys to change the percentage.</p>
-      <p>Press F11 again to go back to normal. Enjoy your day!</p>
-      <!-- <p>
+        <p>Use the Up and Down arrow keys to change the percentage.</p>
+        <p>Press F11 again to go back to normal. Enjoy your day!</p>
+        <p>
+          Made with 💖 by
+          <a
+            class="credit"
+            href="https://github.com/oftheheadland"
+            target="_blank"
+            rel="noopener"
+            >oftheheadland</a
+          >
+        </p>
+        <!-- <p>
         Multiple monitors? Go
         <a style="color: white;" href="/black">here</a> and fullscreen the page
         on your other monitors.
       </p> -->
 
+        <div id="close" class="close"></div>
+      </div>
     </div>
 
     <div
@@ -166,7 +215,20 @@
     </div>
 
     <script>
-      // let fullscreen = false;
+      document.getElementById("close").addEventListener("click", e => {
+        activateStealth();
+      });
+
+      function activateStealth() {
+        document.addEventListener("contextmenu", event =>
+          event.preventDefault()
+        );
+        document.getElementById("tip").style.display = "none";
+        sleep(100).then(() => {
+          document.body.style.cursor = "none";
+        });
+      }
+
       let percentage = 99;
       updatePercent();
       function updatePercent() {
@@ -175,18 +237,6 @@
 
       window.addEventListener("resize", e => {
         document.body.style.cursor = "auto";
-        // if (!fullscreen) {
-        //     console.log("now we are fullscreen")
-        //     document.getElementById("tip").style.display = 'none';
-        //     document.body.style.cursor = 'none';
-        //     fullscreen = true;
-        // }
-        // else {
-        //     console.log("left fullscreen")
-        //     document.getElementById("tip").style.display = 'block';
-        //     document.body.style.cursor = 'auto';
-        //     fullscreen = false;
-        // }
       });
 
       const sleep = milliseconds => {
@@ -195,22 +245,14 @@
 
       document.addEventListener("keydown", e => {
         if (e.key == "F11") {
-          document.addEventListener("contextmenu", event =>
-            event.preventDefault()
-          );
-          document.getElementById("tip").style.display = "none";
-          sleep(100).then(() => {
-            document.body.style.cursor = "none";
-          });
+          activateStealth();
         } else if (e.key == "F5") {
         } else if (e.key == "ArrowUp") {
-          console.log("up");
           if (percentage < 100) {
             percentage++;
             updatePercent();
           }
         } else if (e.key == "ArrowDown") {
-          console.log("down");
           if (percentage > 0) {
             percentage--;
             updatePercent();
