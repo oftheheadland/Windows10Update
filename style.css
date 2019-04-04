@@ -151,10 +151,11 @@ body {
   margin-top: 10px;
   padding: 10px;
   background-color: rgb(96, 101, 111);
-  font-size: 18px;
+  font-size: 17px;
   position: relative;
   z-index: 100;
   box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.39) !important;
+  font-family: "Segoe UI", "Open Sans", sans-serif;
 }
 
 .title-h2 {
@@ -162,7 +163,7 @@ body {
   font-size: 26px;
 }
 
-.loader-div  {
+.loader-div {
   position: absolute;
   top: 50%;
   left: 50%;
